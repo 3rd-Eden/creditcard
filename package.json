@@ -1,0 +1,28 @@
+{
+  "name": "creditcard",
+  "version": "0.0.0",
+  "description": "Creditcard number parsing, validation and information extraction",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/observing/creditcard"
+  },
+  "keywords": [
+    "card",
+    "credit-card",
+    "credit",
+    "card",
+    "creditcard",
+    "parsing",
+    "validation",
+    "extraction",
+    "iin",
+    "bic",
+    "mii"
+  ],
+  "author": "Arnout Kazemier",
+  "license": "MIT"
+}
