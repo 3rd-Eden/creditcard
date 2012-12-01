@@ -53,3 +53,17 @@ describe('creditcard#format', function () {
     expect(creditcard.format('4222222222222')).to.equal('4222 2222 2222 2');
   });
 });
+
+describe('creditcard#pan', function () {
+  it('should handle Amerian Express', function () {
+    expect(creditcard.pan('378282246310005')).to.equal('XXXX XXXXXX X0005');
+  });
+
+  it('should formot all other credit card formats', function () {
+    expect(creditcard.pan('4111111111111111')).to.equal('XXXX XXXX XXXX 1111');
+  });
+
+  it('should also truncate credit card numbers with less chars correctly', function () {
+    expect(creditcard.pan('4222222222222')).to.equal('XXXX XXXX X222 2');
+  });
+});
