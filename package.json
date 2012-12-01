@@ -4,28 +4,32 @@
   "description": "Creditcard number parsing, validation and information extraction",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha $(shell find test -name '*.test.js')"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:observing/creditcard.git"
   },
   "keywords": [
+    "IEC",
+    "ISO/IEC 7812",
+    "bic",
     "card",
-    "credit-card",
+    "card",
     "credit",
-    "card",
+    "credit-card",
     "creditcard",
-    "parsing",
-    "validation",
     "extraction",
     "iin",
-    "bic",
-    "mii",
     "iso",
-    "IEC",
-    "ISO/IEC 7812"
+    "mii",
+    "parsing",
+    "validation"
   ],
+  "devDependencies": {
+    "chai": "1.4.0",
+    "mocha": "1.7.3"
+  },
   "author": "Arnout Kazemier",
   "license": "MIT"
 }
