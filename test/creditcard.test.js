@@ -67,3 +67,29 @@ describe('creditcard#pan', function () {
     expect(creditcard.pan('4222222222222')).to.equal('XXXX XXXX X222 2');
   });
 });
+
+describe('creditcard#parse', function () {
+  it('should extract information', function () {
+    var data = creditcard.parse('4111111111111111');
+
+    expect(data).to.have.property('iin');
+    expect(data).to.have.property('mii');
+    expect(data).to.have.property('cvv');
+    expect(data).to.have.property('pan');
+    expect(data).to.have.property('scheme');
+    expect(data).to.have.property('formatted');
+    expect(data).to.have.property('validates');
+  });
+
+  it('should extract the correct information', function () {
+    var data = creditcard.parse('4111111111111111');
+
+    expect(data.iin).to.equal('411111111');
+    expect(data.mii).to.equal('Banking and financial');
+    expect(data.cvv).to.equal(3);
+    expect(data.pan).to.equal('XXXX XXXX XXXX 1111');
+    expect(data.scheme).to.equal('Visa');
+    expect(data.formatted).to.equal('4111 1111 1111 1111');
+    expect(data.validates).to.equal(true);
+  });
+});
