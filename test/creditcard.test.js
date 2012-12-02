@@ -93,3 +93,17 @@ describe('creditcard#parse', function () {
     expect(data.validates).to.equal(true);
   });
 });
+
+describe('creditcard#expiry', function () {
+  it('should validate the expiry', function () {
+    var today = new Date();
+
+    expect(creditcard.expiry((today.getMonth() + 1), today.getFullYear()));
+  });
+
+  it('should not validate the expiry', function () {
+    expect(creditcard.expiry('06', '1990')).to.equal(false);
+    expect(creditcard.expiry('06', '12')).to.equal(false);
+    expect(creditcard.expiry(6, 12)).to.equal(false);
+  });
+});
