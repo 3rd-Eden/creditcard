@@ -1,0 +1,253 @@
+[
+  {
+    "tags": [
+      {
+        "type": "type",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "description": {
+      "full": "<p>Major Industry Identifier.</p>\n\n<p>The first digit of a ISO/IEC 7812 issuer identifier number (inn) tells about<br />what industry the card is used. The index of the array should be the first<br />number of the inn.</p>",
+      "summary": "<p>Major Industry Identifier.</p>",
+      "body": "<p>The first digit of a ISO/IEC 7812 issuer identifier number (inn) tells about<br />what industry the card is used. The index of the array should be the first<br />number of the inn.</p>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.mii = exports.MII = [\n    'ISO/TC 68 and other industry assignments'\n  , 'Airlines'\n  , 'Airlines and other future industry assignments'\n  , 'Travel and entertainment and banking/financial'\n  , 'Banking and financial'\n  , 'Banking and financial'\n  , 'Merchandising and banking/financial'\n  , 'Petroleum and other future industry assignments'\n  , 'Healthcare, telecommunications and other future industry assignments'\n  , 'For assignment by national standards bodies'\n];",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "mii",
+      "value": "exports.MII = [",
+      "string": "exports.mii"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "type",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "description": {
+      "full": "<p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
+      "summary": "<p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.testnumbers = [\n    4222222222222     // visa\n  , 4012888888881881  // visa\n  , 4111111111111111  // visa\n  , 5105105105105100  // mastercard\n  , 5555555555554444  // mastercard\n  , 3566002020360505  // jbc\n  , 3530111333300000  // jbc\n  , 6011000990139424  // discover\n  , 6011111111111117  // discover\n  , 6011601160116611  // discover\n  , 38520000023237    // diners club\n  , 30569309025904    // diners club\n  , 378734493671000   // american express\n  , 371449635398431   // american express\n  , 378282246310005   // american express\n  , 341111111111111   // american express\n  , 5431111111111111  // mastercard\n  , 5610591081018250  // australian bank\n  , 5019717010103742  // dankort pbs\n  , 6331101999990016  // switch/solo paymentech\n];",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "testnumbers",
+      "value": "[",
+      "string": "exports.testnumbers"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "number",
+        "description": ""
+      },
+      {
+        "type": "returns",
+        "string": "{String|Undefined}"
+      }
+    ],
+    "description": {
+      "full": "<p>Find out which major card scheme issued the card based on the iin range.</p>",
+      "summary": "<p>Find out which major card scheme issued the card based on the iin range.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.cardscheme = function cardscheme(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  if (/^(5610|560221|560222|560223|560224|560225)/.test(number)) {\n    return 'Australian Bank Card';\n  } else if (/^(2014|2149)/.test(number)) {\n    return 'Diner\\'s Club';\n  } else if (/^36/.test(number)) {\n    return 'Diner\\'s Club International';\n  } else if (/^35(2[89]|[3-8][0-9])/.test(number)) {\n    return 'Japanese Credit Bureau';\n  } else if (/^(5018|5020|5038|6304|6759|676[1-3])/.test(number)) {\n    return 'Maestro';\n  } else if (/^(6304|670[69]|6771)/.test(number)) {\n    return 'laser';\n  } else if (/^(6334|6767)/.test(number)) {\n    return 'Solo (Paymentech)';\n  } else if (/^5[1-5]/.test(number)) {\n    return 'MasterCard';\n  } else if (/^(6011|622|64|65)/.test(number)) {\n    return 'Discover';\n  } else if (/^3[47]/.test(number)) {\n    return 'American Express';\n  } else if (/^(30[0-5]|36|38|54|55|2014|2149)/.test(number)) {\n    return 'Diner\\'s Club / Carte Blanche';\n  } else if (/^(4026|417500|4508|4844|491(3|7))/.test(number)) {\n    return 'Visa Electron';\n  } else if (/^(4)/.test(number)) {\n    return 'Visa';\n  }\n\n  return undefined;\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "cardscheme",
+      "string": "exports.cardscheme()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "number",
+        "description": ""
+      },
+      {
+        "type": "returns",
+        "string": "{String} formatted version"
+      }
+    ],
+    "description": {
+      "full": "<p>Format the credit card number in to the same patterns as seen on the actual<br />credit cards.</p>",
+      "summary": "<p>Format the credit card number in to the same patterns as seen on the actual<br />credit cards.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.format = function format(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var index = 0\n    , pattern = /^(34|37)/.test(number)\n      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern\n      : 'XXXX XXXX XXXX XXXX';  // All other credit cards\n\n  return pattern.replace(/X/g, function replace(char) {\n    return number.charAt(index++) || '';\n  }).trim();\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "format",
+      "string": "exports.format()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "copyright",
+        "string": "https://gist.github.com/976805"
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "number",
+        "description": ""
+      },
+      {
+        "type": "returns",
+        "string": "{Boolean}"
+      }
+    ],
+    "description": {
+      "full": "<p>Validates the creditcards using the Luhn10 algorithm.</p>",
+      "summary": "<p>Validates the creditcards using the Luhn10 algorithm.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.validate = function validate(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var i = number.length\n    , sum = 0\n    , mul = 1\n    , ca;\n\n  while (i--) {\n    ca = number.charAt(i) * mul;\n    sum += ca - (ca > 9) * 9;\n    mul ^= 3;\n  }\n\n  return (sum % 10 === 0) && (sum > 0);\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "validate",
+      "string": "exports.validate()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Number"
+        ],
+        "name": "month",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Number"
+        ],
+        "name": "year",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Validates the expiry number.</p>",
+      "summary": "<p>Validates the expiry number.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.expiry = function expiry(month, year) {\n  // number conversion\n  month = +month;\n  year = +year;\n\n  // incorrect numbers should fail fast\n  if (!month || year) return false;\n\n  var date = new Date()\n    , now = +date;\n\n  date.setFullYear(year);\n  date.setMonth(--month);\n\n  return +date >= now;\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "expiry",
+      "string": "exports.expiry()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "number",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": "pan"
+      }
+    ],
+    "description": {
+      "full": "<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction is a \"technology\" that prevents most of the digits of a creditcard<br />from appearing on printed receipts.</p>",
+      "summary": "<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction is a \"technology\" that prevents most of the digits of a creditcard<br />from appearing on printed receipts.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.pan = exports.PAN = function pan(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var length = number.length - 4\n    , pattern = exports.format(number);\n\n  return pattern.replace(/\\d/g, function replace(char) {\n    return length-- > 0\n      ? 'X'\n      : char;\n  });\n};",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "pan",
+      "value": "exports.PAN = function pan(number) {",
+      "string": "exports.pan"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "number",
+        "description": ""
+      },
+      {
+        "type": "returns",
+        "string": "{String}"
+      }
+    ],
+    "description": {
+      "full": "<p>Parse the creditcard information</p>",
+      "summary": "<p>Parse the creditcard information</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "exports.parse = function parse(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var scheme = exports.cardscheme(number);\n\n  return {\n      iin: number.slice(0, 9)               // Issuer Identifier Number\n    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier\n    , formatted: exports.format(number)     // Formatted version\n    , cvv: scheme === 'American Express'\n        ? 4                                 // American Express requires 4 digits\n        : 3                                 // All other credit cards\n    , pan: exports.pan(number)              // PAN truncated version\n    , scheme: scheme                        // Creditcard scheme\n    , validates: exports.validate(number)   // Does the creditcard validate\n  };\n};\n}(typeof exports !== 'undefined' ? exports : (creditcard = {})));",
+    "ctx": {
+      "type": "method",
+      "receiver": "exports",
+      "name": "parse",
+      "string": "exports.parse()"
+    }
+  }
+]
