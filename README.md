@@ -1,4 +1,4 @@
-# Creditcard
+# Creditcard [![Build Status](https://secure.travis-ci.org/observing/creditcard.png?branch=master)](https://travis-ci.org/observing/creditcard)
 
 Creditcard number parsing, validation and information extraction. The source
 code has been commented using JSDoc and converted to documentation which can be
