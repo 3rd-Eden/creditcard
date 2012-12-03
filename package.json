@@ -1,6 +1,6 @@
 {
   "name": "creditcard",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Creditcard number parsing, validation and information extraction",
   "main": "lib/index.js",
   "scripts": {
