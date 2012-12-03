@@ -23,6 +23,7 @@ exports.mii = exports.MII = [
   , 'For assignment by national standards bodies'
 ];
 ```
+---------------------------------------
 
 ### creditcard.testnumbers
 <p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>
@@ -54,6 +55,7 @@ exports.testnumbers = [
   , 6331101999990016  // switch/solo paymentech
 ];
 ```
+---------------------------------------
 
 ### creditcard.cardscheme(number _String_)
 <p>Find out which major card scheme issued the card based on the iin range.</p>
@@ -101,6 +103,7 @@ exports.cardscheme = function cardscheme(number) {
   return undefined;
 };
 ```
+---------------------------------------
 
 ### creditcard.format(number _String_)
 <p>Format the credit card number in to the same patterns as seen on the actual<br />credit cards.</p>
@@ -127,6 +130,7 @@ exports.format = function format(number) {
   }).trim();
 };
 ```
+---------------------------------------
 
 ### creditcard.validate(number _String_)
 <p>Validates the creditcards using the Luhn10 algorithm.</p>
@@ -157,6 +161,7 @@ exports.validate = function validate(number) {
   return (sum % 10 === 0) && (sum > 0);
 };
 ```
+---------------------------------------
 
 ### creditcard.expiry(month _String|Number_, year _String|Number_)
 <p>Validates the expiry number.</p>
@@ -189,6 +194,7 @@ exports.expiry = function expiry(month, year) {
   return +date >= now;
 };
 ```
+---------------------------------------
 
 ### creditcard.pan(number _String_)
 <p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction is a "technology" that prevents most of the digits of a creditcard<br />from appearing on printed receipts.</p>
@@ -215,6 +221,7 @@ exports.pan = exports.PAN = function pan(number) {
   });
 };
 ```
+---------------------------------------
 
 ### creditcard.parse(number _String_)
 <p>Parse the creditcard information</p>
@@ -247,5 +254,6 @@ exports.parse = function parse(number) {
 };
 }(typeof exports !== 'undefined' ? exports : (creditcard = {})));
 ```
+---------------------------------------
 
 
