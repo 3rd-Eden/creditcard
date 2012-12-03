@@ -1,8 +1,18 @@
 # API documentation
 
 <% jsdoc.forEach(function (api) { %>
-## creditcard.<%i api.ctx.name %>
+### creditcard.<%- api.ctx.name %><%- api.ctx.invocation %>
+<%- api.description.full %>
 
-<% api.description.full %>
+<% if (api.params.length) { %>
+#### Arguments
+<% api.params.forEach(function (param) { %>
+- **<%= param.name %>** _<%= param.types.join(', ') %>_ <%= param.description %>
+<% }) %>
+<% } %>
 
+#### Implementation
+```js
+<%- api.code %>
+```
 <% }) %>
