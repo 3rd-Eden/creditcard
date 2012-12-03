@@ -1,6 +1,6 @@
 {
   "name": "creditcard",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Creditcard number parsing, validation and information extraction",
   "main": "lib/index.js",
   "scripts": {
@@ -28,7 +28,9 @@
   ],
   "devDependencies": {
     "chai": "1.4.0",
-    "mocha": "1.7.3"
+    "mocha": "1.7.3",
+    "dox": "0.4.1",
+    "ejs": "0.8.3"
   },
   "author": "Arnout Kazemier",
   "license": "MIT"
