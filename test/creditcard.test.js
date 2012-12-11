@@ -54,17 +54,17 @@ describe('creditcard#format', function () {
   });
 });
 
-describe('creditcard#pan', function () {
+describe('creditcard#truncate', function () {
   it('should handle Amerian Express', function () {
-    expect(creditcard.pan('378282246310005')).to.equal('XXXX XXXXXX X0005');
+    expect(creditcard.truncate('378282246310005')).to.equal('XXXX XXXXXX X0005');
   });
 
   it('should formot all other credit card formats', function () {
-    expect(creditcard.pan('4111111111111111')).to.equal('XXXX XXXX XXXX 1111');
+    expect(creditcard.truncate('4111111111111111')).to.equal('XXXX XXXX XXXX 1111');
   });
 
   it('should also truncate credit card numbers with less chars correctly', function () {
-    expect(creditcard.pan('4222222222222')).to.equal('XXXX XXXX X222 2');
+    expect(creditcard.truncate('4222222222222')).to.equal('XXXX XXXX X222 2');
   });
 });
 
@@ -75,7 +75,7 @@ describe('creditcard#parse', function () {
     expect(data).to.have.property('iin');
     expect(data).to.have.property('mii');
     expect(data).to.have.property('cvv');
-    expect(data).to.have.property('pan');
+    expect(data).to.have.property('truncate');
     expect(data).to.have.property('scheme');
     expect(data).to.have.property('formatted');
     expect(data).to.have.property('validates');
@@ -87,7 +87,7 @@ describe('creditcard#parse', function () {
     expect(data.iin).to.equal('411111111');
     expect(data.mii).to.equal('Banking and financial');
     expect(data.cvv).to.equal(3);
-    expect(data.pan).to.equal('XXXX XXXX XXXX 1111');
+    expect(data.truncate).to.equal('XXXX XXXX XXXX 1111');
     expect(data.scheme).to.equal('Visa');
     expect(data.formatted).to.equal('4111 1111 1111 1111');
     expect(data.validates).to.equal(true);
