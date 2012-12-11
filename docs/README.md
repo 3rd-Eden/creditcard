@@ -196,8 +196,8 @@ exports.expiry = function expiry(month, year) {
 ```
 ---------------------------------------
 
-### creditcard.pan(number _String_)
-<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction is a "technology" that prevents most of the digits of a creditcard<br />from appearing on printed receipts.</p>
+### creditcard.truncate(number _String_)
+<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>
 
 
 #### Arguments
@@ -208,7 +208,7 @@ exports.expiry = function expiry(month, year) {
 
 #### Implementation
 ```js
-exports.pan = exports.PAN = function pan(number) {
+exports.truncate = exports.PANtruncate = function pan(number) {
   number = (''+ number).replace(/\D/g, '');
 
   var length = number.length - 4
