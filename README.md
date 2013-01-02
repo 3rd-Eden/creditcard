@@ -32,7 +32,7 @@ folder**](https://github.com/observing/creditcard/tree/master/docs)
 
 ### License (MIT)
 
-Copyright (c) 2012 Observe.it (http://observe.it) <opensource@observe.it>
+Copyright (c) 2013 Observe.it (http://observe.it) <opensource@observe.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
