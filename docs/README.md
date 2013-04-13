@@ -247,7 +247,7 @@ exports.parse = function parse(number) {
     , cvv: scheme === 'American Express'
         ? 4                                 // American Express requires 4 digits
         : 3                                 // All other credit cards
-    , pan: exports.pan(number)              // PAN truncated version
+    , truncate: exports.truncate(number)    // PAN truncated version
     , scheme: scheme                        // Creditcard scheme
     , validates: exports.validate(number)   // Does the creditcard validate
   };
