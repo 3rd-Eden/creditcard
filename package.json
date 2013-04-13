@@ -1,9 +1,9 @@
 {
   "name": "creditcard",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Creditcard number parsing, validation and information extraction",
   "scripts": {
-    "test": "./node_modules/.bin/mocha $(shell find test -name '*.test.js')"
+    "test": "./node_modules/.bin/mocha $(find test -name '*.test.js')"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,6 @@
     "IEC",
     "ISO/IEC 7812",
     "bic",
-    "card",
     "card",
     "credit",
     "credit-card",
@@ -26,12 +25,12 @@
     "validation"
   ],
   "devDependencies": {
-    "chai": "1.4.0",
-    "mocha": "1.7.3",
-    "dox": "0.4.1",
-    "ejs": "0.8.3",
-    "pre-commit": "0.0.3"
+    "chai": "1.4.x",
+    "mocha": "1.7.x",
+    "dox": "0.4.x",
+    "ejs": "0.8.x",
+    "pre-commit": "0.0.x"
   },
-  "author": "Arnout Kazemier",
+  "author": "Arnout Kazemier <opensource@observe.it>",
   "license": "MIT"
 }
