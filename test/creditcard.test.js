@@ -11,7 +11,7 @@ chai.Assertion.includeStack = true;
 /**
  * The actual library that we test..
  */
-var creditcard = require('../lib/creditcard');
+var creditcard = require('../');
 
 describe('creditcard#validate', function () {
   var valid = 4222222222222

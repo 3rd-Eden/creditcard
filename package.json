@@ -2,7 +2,6 @@
   "name": "creditcard",
   "version": "0.0.2",
   "description": "Creditcard number parsing, validation and information extraction",
-  "main": "lib/creditcard.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha $(shell find test -name '*.test.js')"
   },
@@ -30,7 +29,8 @@
     "chai": "1.4.0",
     "mocha": "1.7.3",
     "dox": "0.4.1",
-    "ejs": "0.8.3"
+    "ejs": "0.8.3",
+    "pre-commit": "0.0.3"
   },
   "author": "Arnout Kazemier",
   "license": "MIT"
