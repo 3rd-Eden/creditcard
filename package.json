@@ -2,7 +2,7 @@
   "name": "creditcard",
   "version": "0.0.2",
   "description": "Creditcard number parsing, validation and information extraction",
-  "main": "lib/index.js",
+  "main": "lib/creditcard.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha $(shell find test -name '*.test.js')"
   },
