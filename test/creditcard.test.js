@@ -98,7 +98,7 @@ describe('creditcard#expiry', function () {
   it('should validate the expiry', function () {
     var today = new Date();
 
-    expect(creditcard.expiry((today.getMonth() + 1), today.getFullYear()));
+    expect(creditcard.expiry((today.getMonth() + 1), today.getFullYear())).to.equal(true);
   });
 
   it('should not validate the expiry', function () {
