@@ -149,7 +149,7 @@ exports.expiry = function expiry(month, year) {
   year = +year;
 
   // incorrect numbers should fail fast
-  if (!month || year) return false;
+  if (!(month || year)) return false;
 
   var date = new Date()
     , now = +date;
