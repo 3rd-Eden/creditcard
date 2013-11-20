@@ -1,6 +1,6 @@
 {
   "name": "creditcard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Creditcard number parsing, validation and information extraction",
   "scripts": {
     "test": "./node_modules/.bin/mocha $(find test -name '*.test.js')"
