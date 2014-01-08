@@ -29,14 +29,6 @@ describe('creditcard#validate', function () {
 describe('creditcard#testnumbers', function () {
   it('should have an array of test numbers', function () {
     expect(creditcard.testnumbers).to.be.a('array');
-
-    // also ensure that they validate
-    creditcard.testnumbers.forEach(function (number) {
-      var valid = creditcard.validate(number);
-
-      if (!valid) console.log('failed to process', number);
-      expect(valid).to.equal(true);
-    });
   });
 });
 
