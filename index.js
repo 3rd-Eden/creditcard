@@ -48,8 +48,9 @@ exports.testnumbers = [
   , 341111111111111   // american express
   , 5431111111111111  // mastercard
   , 5610591081018250  // australian bank
-  , 5019717010103742  // dankort pbs
-  , 6331101999990016  // switch/solo paymentech
+  , 5019717010103742  // dankort (pbs)
+  , 76009244561       // dankort (pbs)
+  , 6331101999990016  // switch/solo (paymentech)
 ];
 
 /**
