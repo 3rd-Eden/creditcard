@@ -30,7 +30,25 @@ exports.mii = exports.MII = [
  * @type {Array}
  */
 exports.testnumbers = [
-    4222222222222     // visa
+    4000000000000002  // Recurly test number
+  , 4000000000000010  // Recurly test number
+  , 4000000000000028  // Recurly test number
+  , 4000000000000036  // Recurly test number
+  , 4000000000000044  // Recurly test number
+  , 4000000000000051  // Recurly test number
+  , 4000000000000077  // Recurly test number
+  , 4000000000000085  // Recurly test number
+  , 4000000000000093  // Recurly test number
+  , 4000000000000101  // Recurly test number
+  , 4000000000000119  // Recurly test number
+  , 4000000000000200  // Recurly test number
+  , 4222222222222222  // Recurly test number
+  , 4000000000000226  // Recurly test number
+  , 4000000000000309  // Recurly test number
+  , 4000000000000317  // Recurly test number
+  , 4000000000000325  // Recurly test number
+  , 4000000000000341  // Recurly test number
+  , 4222222222222     // visa
   , 4012888888881881  // visa
   , 4111111111111111  // visa
   , 5105105105105100  // mastercard
