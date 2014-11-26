@@ -6,11 +6,11 @@ found in the `docs` folder.
 
 ## Installation
 
-The module is available in the NPM registery. It can be installed using the
-`npm` commandline utlity.
+The module is available in the NPM registry. It can be installed using the
+`npm` command line utility.
 
 ```
-npm install creditcard
+npm install --save creditcard
 ```
 
 Once you have installed the module you can simply require inside of your Node.js
