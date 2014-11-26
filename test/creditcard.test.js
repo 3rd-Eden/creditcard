@@ -97,5 +97,9 @@ describe('creditcard#expiry', function () {
     expect(creditcard.expiry('06', '1990')).to.equal(false);
     expect(creditcard.expiry('06', '12')).to.equal(false);
     expect(creditcard.expiry(6, 12)).to.equal(false);
+    expect(creditcard.expiry('99', '2020')).to.equal(false);
+    expect(creditcard.expiry(99, 2020)).to.equal(false);
+    expect(creditcard.expiry(null, '2020')).to.equal(false);
+    expect(creditcard.expiry('6', null)).to.equal(false);
   });
 });
