@@ -9,6 +9,7 @@
  * number of the inn.
  *
  * @type {Array}
+ * @public
  */
 exports.mii = exports.MII = [
     'ISO/TC 68 and other industry assignments'
@@ -24,10 +25,11 @@ exports.mii = exports.MII = [
 ];
 
 /**
- * Test numbers from different creditcard schemes. Most of them are taken from
+ * Test numbers from different credit card schemes. Most of them are taken from
  * http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
  *
  * @type {Array}
+ * @public
  */
 exports.testnumbers = [
     4000000000000002  // Recurly test number
@@ -72,10 +74,11 @@ exports.testnumbers = [
 ];
 
 /**
- * Find out which major card scheme issued the card based on the iin range.
+ * Find out which major card scheme issued the card based on the IIN range.
  *
- * @param {String} number
+ * @param {String} number Credit card number.
  * @returns {String|Undefined}
+ * @api public
  */
 exports.cardscheme = function cardscheme(number) {
   number = (''+ number).replace(/\D/g, '');
@@ -115,16 +118,17 @@ exports.cardscheme = function cardscheme(number) {
  * Format the credit card number in to the same patterns as seen on the actual
  * credit cards.
  *
- * @param {String} number
- * @returns {String} formatted version
+ * @param {String} number Credit card number.
+ * @returns {String} Formatted version.
+ * @api public
  */
 exports.format = function format(number) {
   number = (''+ number).replace(/\D/g, '');
 
   var index = 0
     , pattern = /^(34|37)/.test(number)
-      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern
-      : 'XXXX XXXX XXXX XXXX';  // All other credit cards
+      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern.
+      : 'XXXX XXXX XXXX XXXX';  // All other credit cards.
 
   return pattern.replace(/X/g, function replace(char) {
     return number.charAt(index++) || '';
@@ -132,11 +136,12 @@ exports.format = function format(number) {
 };
 
 /**
- * Validates the creditcards using the Luhn10 algorithm.
+ * Validates the credit card number using the Luhn10 algorithm.
  *
  * @copyright https://gist.github.com/976805
- * @param {String} number
+ * @param {String} number Credit card number we should validate.
  * @returns {Boolean}
+ * @api public
  */
 exports.validate = function validate(number) {
   number = (''+ number).replace(/\D/g, '');
@@ -158,16 +163,17 @@ exports.validate = function validate(number) {
 /**
  * Validates the expiry number.
  *
- * @param {String|Number} month
- * @param {String|Number} year
- * @return {Boolean}
+ * @param {String|Number} month Expiry month.
+ * @param {String|Number} year Expiry year.
+ * @returns {Boolean}
+ * @api public
  */
 exports.expiry = function expiry(month, year) {
-  // number conversion
+  // number conversion.
   month = +month;
   year = +year;
 
-  // incorrect numbers should fail fast
+  // incorrect numbers should fail fast instantly
   if (!month || !year || month > 12) return false;
 
   var date = new Date()
@@ -180,14 +186,15 @@ exports.expiry = function expiry(month, year) {
 };
 
 /**
- * Applies PAN truncation to the given creditcard. PAN (primary account number)
+ * Applies PAN truncation to the given credit card. PAN (primary account number)
  * trunction simply replaces the credit-card number's digits by asterisks while
  * leaving the last 4 digits untouched. This hides the numbers from strangers
  * while still allowing the card holder with multiple cards to identify which
  * card was used.
  *
- * @param {String} number
- * @return {String} pan
+ * @param {String} number Credit card number.
+ * @returns {String} PAN.
+ * @api public
  */
 exports.truncate = exports.PANtruncate = function pan(number) {
   number = (''+ number).replace(/\D/g, '');
@@ -203,10 +210,11 @@ exports.truncate = exports.PANtruncate = function pan(number) {
 };
 
 /**
- * Parse the creditcard information
+ * Parse the credit card information all at once.
  *
- * @param {String} number
- * @returns {String}
+ * @param {String} number Credit card number.
+ * @returns {Object}
+ * @api public
  */
 exports.parse = function parse(number) {
   number = (''+ number).replace(/\D/g, '');
@@ -214,15 +222,15 @@ exports.parse = function parse(number) {
   var scheme = exports.cardscheme(number);
 
   return {
-      iin: number.slice(0, 9)               // Issuer Identifier Number
-    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier
-    , formatted: exports.format(number)     // Formatted version
+      iin: number.slice(0, 9)               // Issuer Identifier Number.
+    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.
+    , formatted: exports.format(number)     // Formatted version.
     , cvv: scheme === 'American Express'
-        ? 4                                 // American Express requires 4 digits
-        : 3                                 // All other credit cards
-    , truncate: exports.truncate(number)    // PAN truncated version
-    , scheme: scheme                        // Creditcard scheme
-    , validates: exports.validate(number)   // Does the creditcard validate
+        ? 4                                 // American Express requires 4 digits.
+        : 3                                 // All other credit cards.
+    , truncate: exports.truncate(number)    // PAN truncated version.
+    , scheme: scheme                        // Credit card scheme.
+    , validates: exports.validate(number)   // Does the credit card validate.
   };
 };
 }(typeof exports !== 'undefined' ? exports : (creditcard = {})));
