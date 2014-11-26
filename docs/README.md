@@ -26,14 +26,32 @@ exports.mii = exports.MII = [
 ---------------------------------------
 
 ### creditcard.testnumbers
-<p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>
+<p>Test numbers from different credit card schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>
 
 
 
 #### Implementation
 ```js
 exports.testnumbers = [
-    4222222222222     // visa
+    4000000000000002  // Recurly test number
+  , 4000000000000010  // Recurly test number
+  , 4000000000000028  // Recurly test number
+  , 4000000000000036  // Recurly test number
+  , 4000000000000044  // Recurly test number
+  , 4000000000000051  // Recurly test number
+  , 4000000000000077  // Recurly test number
+  , 4000000000000085  // Recurly test number
+  , 4000000000000093  // Recurly test number
+  , 4000000000000101  // Recurly test number
+  , 4000000000000119  // Recurly test number
+  , 4000000000000200  // Recurly test number
+  , 4222222222222222  // Recurly test number
+  , 4000000000000226  // Recurly test number
+  , 4000000000000309  // Recurly test number
+  , 4000000000000317  // Recurly test number
+  , 4000000000000325  // Recurly test number
+  , 4000000000000341  // Recurly test number
+  , 4222222222222     // visa
   , 4012888888881881  // visa
   , 4111111111111111  // visa
   , 5105105105105100  // mastercard
@@ -51,19 +69,20 @@ exports.testnumbers = [
   , 341111111111111   // american express
   , 5431111111111111  // mastercard
   , 5610591081018250  // australian bank
-  , 5019717010103742  // dankort pbs
-  , 6331101999990016  // switch/solo paymentech
+  , 5019717010103742  // dankort (pbs)
+  , 76009244561       // dankort (pbs)
+  , 6331101999990016  // switch/solo (paymentech)
 ];
 ```
 ---------------------------------------
 
 ### creditcard.cardscheme(number _String_)
-<p>Find out which major card scheme issued the card based on the iin range.</p>
+<p>Find out which major card scheme issued the card based on the IIN range.</p>
 
 
 #### Arguments
 
-- **number** _String_ 
+- **number** _String_ Credit card number.
 
 
 
@@ -111,7 +130,7 @@ exports.cardscheme = function cardscheme(number) {
 
 #### Arguments
 
-- **number** _String_ 
+- **number** _String_ Credit card number.
 
 
 
@@ -122,8 +141,8 @@ exports.format = function format(number) {
 
   var index = 0
     , pattern = /^(34|37)/.test(number)
-      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern
-      : 'XXXX XXXX XXXX XXXX';  // All other credit cards
+      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern.
+      : 'XXXX XXXX XXXX XXXX';  // All other credit cards.
 
   return pattern.replace(/X/g, function replace(char) {
     return number.charAt(index++) || '';
@@ -133,12 +152,12 @@ exports.format = function format(number) {
 ---------------------------------------
 
 ### creditcard.validate(number _String_)
-<p>Validates the creditcards using the Luhn10 algorithm.</p>
+<p>Validates the credit card number using the Luhn10 algorithm.</p>
 
 
 #### Arguments
 
-- **number** _String_ 
+- **number** _String_ Credit card number we should validate.
 
 
 
@@ -169,21 +188,21 @@ exports.validate = function validate(number) {
 
 #### Arguments
 
-- **month** _String, Number_ 
+- **month** _String, Number_ Expiry month.
 
-- **year** _String, Number_ 
+- **year** _String, Number_ Expiry year.
 
 
 
 #### Implementation
 ```js
 exports.expiry = function expiry(month, year) {
-  // number conversion
+  // number conversion.
   month = +month;
   year = +year;
 
-  // incorrect numbers should fail fast
-  if (!month || year) return false;
+  // incorrect numbers should fail fast instantly
+  if (!month || !year || month > 12) return false;
 
   var date = new Date()
     , now = +date;
@@ -197,12 +216,12 @@ exports.expiry = function expiry(month, year) {
 ---------------------------------------
 
 ### creditcard.truncate(number _String_)
-<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>
+<p>Applies PAN truncation to the given credit card. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>
 
 
 #### Arguments
 
-- **number** _String_ 
+- **number** _String_ Credit card number.
 
 
 
@@ -224,12 +243,12 @@ exports.truncate = exports.PANtruncate = function pan(number) {
 ---------------------------------------
 
 ### creditcard.parse(number _String_)
-<p>Parse the creditcard information</p>
+<p>Parse the credit card information all at once.</p>
 
 
 #### Arguments
 
-- **number** _String_ 
+- **number** _String_ Credit card number.
 
 
 
@@ -241,15 +260,15 @@ exports.parse = function parse(number) {
   var scheme = exports.cardscheme(number);
 
   return {
-      iin: number.slice(0, 9)               // Issuer Identifier Number
-    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier
-    , formatted: exports.format(number)     // Formatted version
+      iin: number.slice(0, 9)               // Issuer Identifier Number.
+    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.
+    , formatted: exports.format(number)     // Formatted version.
     , cvv: scheme === 'American Express'
-        ? 4                                 // American Express requires 4 digits
-        : 3                                 // All other credit cards
-    , truncate: exports.truncate(number)    // PAN truncated version
-    , scheme: scheme                        // Creditcard scheme
-    , validates: exports.validate(number)   // Does the creditcard validate
+        ? 4                                 // American Express requires 4 digits.
+        : 3                                 // All other credit cards.
+    , truncate: exports.truncate(number)    // PAN truncated version.
+    , scheme: scheme                        // Credit card scheme.
+    , validates: exports.validate(number)   // Does the credit card validate.
   };
 };
 }(typeof exports !== 'undefined' ? exports : (creditcard = {})));

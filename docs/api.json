@@ -6,6 +6,10 @@
         "types": [
           "Array"
         ]
+      },
+      {
+        "type": "public",
+        "string": ""
       }
     ],
     "description": {
@@ -31,16 +35,20 @@
         "types": [
           "Array"
         ]
+      },
+      {
+        "type": "public",
+        "string": ""
       }
     ],
     "description": {
-      "full": "<p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
-      "summary": "<p>Test numbers from different creditcard schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
+      "full": "<p>Test numbers from different credit card schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
+      "summary": "<p>Test numbers from different credit card schemes. Most of them are taken from<br /><a href='http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm'>http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm</a></p>",
       "body": ""
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "exports.testnumbers = [\n    4222222222222     // visa\n  , 4012888888881881  // visa\n  , 4111111111111111  // visa\n  , 5105105105105100  // mastercard\n  , 5555555555554444  // mastercard\n  , 3566002020360505  // jbc\n  , 3530111333300000  // jbc\n  , 6011000990139424  // discover\n  , 6011111111111117  // discover\n  , 6011601160116611  // discover\n  , 38520000023237    // diners club\n  , 30569309025904    // diners club\n  , 378734493671000   // american express\n  , 371449635398431   // american express\n  , 378282246310005   // american express\n  , 341111111111111   // american express\n  , 5431111111111111  // mastercard\n  , 5610591081018250  // australian bank\n  , 5019717010103742  // dankort pbs\n  , 6331101999990016  // switch/solo paymentech\n];",
+    "code": "exports.testnumbers = [\n    4000000000000002  // Recurly test number\n  , 4000000000000010  // Recurly test number\n  , 4000000000000028  // Recurly test number\n  , 4000000000000036  // Recurly test number\n  , 4000000000000044  // Recurly test number\n  , 4000000000000051  // Recurly test number\n  , 4000000000000077  // Recurly test number\n  , 4000000000000085  // Recurly test number\n  , 4000000000000093  // Recurly test number\n  , 4000000000000101  // Recurly test number\n  , 4000000000000119  // Recurly test number\n  , 4000000000000200  // Recurly test number\n  , 4222222222222222  // Recurly test number\n  , 4000000000000226  // Recurly test number\n  , 4000000000000309  // Recurly test number\n  , 4000000000000317  // Recurly test number\n  , 4000000000000325  // Recurly test number\n  , 4000000000000341  // Recurly test number\n  , 4222222222222     // visa\n  , 4012888888881881  // visa\n  , 4111111111111111  // visa\n  , 5105105105105100  // mastercard\n  , 5555555555554444  // mastercard\n  , 3566002020360505  // jbc\n  , 3530111333300000  // jbc\n  , 6011000990139424  // discover\n  , 6011111111111117  // discover\n  , 6011601160116611  // discover\n  , 38520000023237    // diners club\n  , 30569309025904    // diners club\n  , 378734493671000   // american express\n  , 371449635398431   // american express\n  , 378282246310005   // american express\n  , 341111111111111   // american express\n  , 5431111111111111  // mastercard\n  , 5610591081018250  // australian bank\n  , 5019717010103742  // dankort (pbs)\n  , 76009244561       // dankort (pbs)\n  , 6331101999990016  // switch/solo (paymentech)\n];",
     "ctx": {
       "type": "property",
       "receiver": "exports",
@@ -57,16 +65,20 @@
           "String"
         ],
         "name": "number",
-        "description": ""
+        "description": "Credit card number."
       },
       {
         "type": "returns",
         "string": "{String|Undefined}"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
-      "full": "<p>Find out which major card scheme issued the card based on the iin range.</p>",
-      "summary": "<p>Find out which major card scheme issued the card based on the iin range.</p>",
+      "full": "<p>Find out which major card scheme issued the card based on the IIN range.</p>",
+      "summary": "<p>Find out which major card scheme issued the card based on the IIN range.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -87,11 +99,15 @@
           "String"
         ],
         "name": "number",
-        "description": ""
+        "description": "Credit card number."
       },
       {
         "type": "returns",
-        "string": "{String} formatted version"
+        "string": "{String} Formatted version."
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
@@ -101,7 +117,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "exports.format = function format(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var index = 0\n    , pattern = /^(34|37)/.test(number)\n      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern\n      : 'XXXX XXXX XXXX XXXX';  // All other credit cards\n\n  return pattern.replace(/X/g, function replace(char) {\n    return number.charAt(index++) || '';\n  }).trim();\n};",
+    "code": "exports.format = function format(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var index = 0\n    , pattern = /^(34|37)/.test(number)\n      ? 'XXXX XXXXXX XXXXX'     // American express has a different pattern.\n      : 'XXXX XXXX XXXX XXXX';  // All other credit cards.\n\n  return pattern.replace(/X/g, function replace(char) {\n    return number.charAt(index++) || '';\n  }).trim();\n};",
     "ctx": {
       "type": "method",
       "receiver": "exports",
@@ -121,16 +137,20 @@
           "String"
         ],
         "name": "number",
-        "description": ""
+        "description": "Credit card number we should validate."
       },
       {
         "type": "returns",
         "string": "{Boolean}"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
-      "full": "<p>Validates the creditcards using the Luhn10 algorithm.</p>",
-      "summary": "<p>Validates the creditcards using the Luhn10 algorithm.</p>",
+      "full": "<p>Validates the credit card number using the Luhn10 algorithm.</p>",
+      "summary": "<p>Validates the credit card number using the Luhn10 algorithm.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -152,7 +172,7 @@
           "Number"
         ],
         "name": "month",
-        "description": ""
+        "description": "Expiry month."
       },
       {
         "type": "param",
@@ -161,14 +181,15 @@
           "Number"
         ],
         "name": "year",
-        "description": ""
+        "description": "Expiry year."
       },
       {
-        "type": "return",
-        "types": [
-          "Boolean"
-        ],
-        "description": ""
+        "type": "returns",
+        "string": "{Boolean}"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
@@ -178,7 +199,7 @@
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "exports.expiry = function expiry(month, year) {\n  // number conversion\n  month = +month;\n  year = +year;\n\n  // incorrect numbers should fail fast\n  if (!month || year) return false;\n\n  var date = new Date()\n    , now = +date;\n\n  date.setFullYear(year);\n  date.setMonth(--month);\n\n  return +date >= now;\n};",
+    "code": "exports.expiry = function expiry(month, year) {\n  // number conversion.\n  month = +month;\n  year = +year;\n\n  // incorrect numbers should fail fast instantly\n  if (!month || !year || month > 12) return false;\n\n  var date = new Date()\n    , now = +date;\n\n  date.setFullYear(year);\n  date.setMonth(--month);\n\n  return +date >= now;\n};",
     "ctx": {
       "type": "method",
       "receiver": "exports",
@@ -194,19 +215,20 @@
           "String"
         ],
         "name": "number",
-        "description": ""
+        "description": "Credit card number."
       },
       {
-        "type": "return",
-        "types": [
-          "String"
-        ],
-        "description": "pan"
+        "type": "returns",
+        "string": "{String} PAN."
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
-      "full": "<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>",
-      "summary": "<p>Applies PAN truncation to the given creditcard. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>",
+      "full": "<p>Applies PAN truncation to the given credit card. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>",
+      "summary": "<p>Applies PAN truncation to the given credit card. PAN (primary account number)<br />trunction simply replaces the credit-card number's digits by asterisks while<br />leaving the last 4 digits untouched. This hides the numbers from strangers<br />while still allowing the card holder with multiple cards to identify which<br />card was used.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -228,21 +250,25 @@
           "String"
         ],
         "name": "number",
-        "description": ""
+        "description": "Credit card number."
       },
       {
         "type": "returns",
-        "string": "{String}"
+        "string": "{Object}"
+      },
+      {
+        "type": "api",
+        "visibility": "public"
       }
     ],
     "description": {
-      "full": "<p>Parse the creditcard information</p>",
-      "summary": "<p>Parse the creditcard information</p>",
+      "full": "<p>Parse the credit card information all at once.</p>",
+      "summary": "<p>Parse the credit card information all at once.</p>",
       "body": ""
     },
     "isPrivate": false,
     "ignore": false,
-    "code": "exports.parse = function parse(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var scheme = exports.cardscheme(number);\n\n  return {\n      iin: number.slice(0, 9)               // Issuer Identifier Number\n    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier\n    , formatted: exports.format(number)     // Formatted version\n    , cvv: scheme === 'American Express'\n        ? 4                                 // American Express requires 4 digits\n        : 3                                 // All other credit cards\n    , truncate: exports.truncate(number)    // PAN truncated version\n    , scheme: scheme                        // Creditcard scheme\n    , validates: exports.validate(number)   // Does the creditcard validate\n  };\n};\n}(typeof exports !== 'undefined' ? exports : (creditcard = {})));",
+    "code": "exports.parse = function parse(number) {\n  number = (''+ number).replace(/\\D/g, '');\n\n  var scheme = exports.cardscheme(number);\n\n  return {\n      iin: number.slice(0, 9)               // Issuer Identifier Number.\n    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.\n    , formatted: exports.format(number)     // Formatted version.\n    , cvv: scheme === 'American Express'\n        ? 4                                 // American Express requires 4 digits.\n        : 3                                 // All other credit cards.\n    , truncate: exports.truncate(number)    // PAN truncated version.\n    , scheme: scheme                        // Credit card scheme.\n    , validates: exports.validate(number)   // Does the credit card validate.\n  };\n};\n}(typeof exports !== 'undefined' ? exports : (creditcard = {})));",
     "ctx": {
       "type": "method",
       "receiver": "exports",
