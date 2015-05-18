@@ -30,6 +30,14 @@ describe('creditcard#testnumbers', function () {
   it('should have an array of test numbers', function () {
     expect(creditcard.testnumbers).to.be.a('array');
   });
+
+  creditcard.testnumbers.forEach( function (number) {
+
+    it('should validate the test creditcard number: ' + number, function() {
+      expect(creditcard.validate(number)).to.equal(true);      
+    });
+  });
+
 });
 
 describe('creditcard#format', function () {
