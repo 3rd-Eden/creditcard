@@ -51,12 +51,20 @@ describe('creditcard#truncate', function () {
     expect(creditcard.truncate('378282246310005')).to.equal('XXXX XXXXXX X0005');
   });
 
-  it('should formot all other credit card formats', function () {
+  it('should format all other credit card formats', function () {
     expect(creditcard.truncate('4111111111111111')).to.equal('XXXX XXXX XXXX 1111');
   });
 
   it('should also truncate credit card numbers with less chars correctly', function () {
     expect(creditcard.truncate('4222222222222')).to.equal('XXXX XXXX X222 2');
+  });
+
+  it('should also truncate credit card numbers and keep first six intact', function () {
+    expect(creditcard.truncate('4111111111111111', 'X', true)).to.equal('4111 11XX XXXX 1111');
+  });
+
+  it('should allow custom truncation characters', function () {
+    expect(creditcard.truncate('4111111111111111', '*')).to.equal('**** **** **** 1111');
   });
 });
 
