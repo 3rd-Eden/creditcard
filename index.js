@@ -188,24 +188,32 @@ exports.expiry = function expiry(month, year) {
 /**
  * Applies PAN truncation to the given credit card. PAN (primary account number)
  * trunction simply replaces the credit-card number's digits by asterisks while
- * leaving the last 4 digits untouched. This hides the numbers from strangers
- * while still allowing the card holder with multiple cards to identify which
- * card was used.
+ * leaving the last 4 digits untouched, unless keeping the first six is specified.
+ * This hides the numbers from strangers while still allowing the card holder
+ * with multiple cards to identify which card was used. Keeping the first six is
+ * useful to allow business to know what company the card was issued from and
+ * track chargebacks.
  *
  * @param {String} number Credit card number.
+ * @param {String} replacementChar Replacement character.
+ * @param {Boolean} keepFirstSix Keep first six digits of card number.
  * @returns {String} PAN.
  * @api public
  */
-exports.truncate = exports.PANtruncate = function pan(number) {
+exports.truncate = exports.PANtruncate = function pan(number, replacementChar, keepFirstSix) {
+  if(!replacementChar) replacementChar = 'X';
   number = (''+ number).replace(/\D/g, '');
 
-  var length = number.length - 4
-    , pattern = exports.format(number);
+  var pattern = exports.format(number)
+     , startPosition = keepFirstSix === true ? 6 : 0
+     , endPosition = number.length - 4
+     , currentPosition = 0;
 
   return pattern.replace(/\d/g, function replace(char) {
-    return length-- > 0
-      ? 'X'
-      : char;
+     currentPosition++;
+     return (currentPosition > startPosition && currentPosition <= endPosition)
+        ? replacementChar
+        : char;
   });
 };
 
@@ -213,24 +221,25 @@ exports.truncate = exports.PANtruncate = function pan(number) {
  * Parse the credit card information all at once.
  *
  * @param {String} number Credit card number.
+ * @param {Boolean} keepFirstSix Keep first six digits of card number.
  * @returns {Object}
  * @api public
  */
-exports.parse = function parse(number) {
+exports.parse = function parse(number, keepFirstSix) {
   number = (''+ number).replace(/\D/g, '');
 
   var scheme = exports.cardscheme(number);
 
   return {
-      iin: number.slice(0, 9)               // Issuer Identifier Number.
-    , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.
-    , formatted: exports.format(number)     // Formatted version.
-    , cvv: scheme === 'American Express'
+     iin: number.slice(0, 9)               // Issuer Identifier Number.
+     , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.
+     , formatted: exports.format(number)     // Formatted version.
+     , cvv: scheme === 'American Express'
         ? 4                                 // American Express requires 4 digits.
         : 3                                 // All other credit cards.
-    , truncate: exports.truncate(number)    // PAN truncated version.
-    , scheme: scheme                        // Credit card scheme.
-    , validates: exports.validate(number)   // Does the credit card validate.
+     , truncate: exports.truncate(number, keepFirstSix)    // PAN truncated version.
+     , scheme: scheme                        // Credit card scheme.
+     , validates: exports.validate(number)   // Does the credit card validate.
   };
 };
 }(typeof exports !== 'undefined' ? exports : (creditcard = {})));
