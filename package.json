@@ -25,11 +25,11 @@
     "validation"
   ],
   "devDependencies": {
-    "chai": "1.4.x",
-    "mocha": "1.7.x",
-    "dox": "0.4.x",
-    "ejs": "0.8.x",
-    "pre-commit": "0.0.x"
+    "chai": "3.5.x",
+    "mocha": "2.5.x",
+    "dox": "0.8.x",
+    "ejs": "2.5.x",
+    "pre-commit": "1.1.x"
   },
   "author": "Arnout Kazemier <opensource@observe.it>",
   "license": "MIT"
