@@ -151,6 +151,12 @@ exports.validate = function validate(number) {
     , mul = 1
     , ca;
 
+  //
+  // Fast fail case, not enough credit card numbers have been entered. The
+  // current shortest range of chars is 12, from Maestro.
+  //
+  if (i < 12) return false;
+
   while (i--) {
     ca = number.charAt(i) * mul;
     sum += ca - (ca > 9) * 9;
@@ -231,12 +237,12 @@ exports.parse = function parse(number, keepFirstSix) {
   var scheme = exports.cardscheme(number);
 
   return {
-     iin: number.slice(0, 9)               // Issuer Identifier Number.
+       iin: number.slice(0, 9)               // Issuer Identifier Number.
      , mii: exports.mii[+number.charAt(0)]   // Major Industry Identifier.
      , formatted: exports.format(number)     // Formatted version.
      , cvv: scheme === 'American Express'
-        ? 4                                 // American Express requires 4 digits.
-        : 3                                 // All other credit cards.
+        ? 4                                  // American Express requires 4 digits.
+        : 3                                  // All other credit cards.
      , truncate: exports.truncate(number, keepFirstSix)    // PAN truncated version.
      , scheme: scheme                        // Credit card scheme.
      , validates: exports.validate(number)   // Does the credit card validate.
