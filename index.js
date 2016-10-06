@@ -97,7 +97,7 @@ exports.cardscheme = function cardscheme(number) {
     return 'laser';
   } else if (/^(6334|6767)/.test(number)) {
     return 'Solo (Paymentech)';
-  } else if (/^5[1-5]/.test(number)) {
+  } else if (/^(222[1-9]|22[3-9]|2[3-6]|27[0-1]|2720|5[1-5])/.test(number)) {
     return 'MasterCard';
   } else if (/^(6011|622|64|65)/.test(number)) {
     return 'Discover';
