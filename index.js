@@ -144,6 +144,10 @@ exports.format = function format(number) {
  * @api public
  */
 exports.validate = function validate(number) {
+
+  //Test for test numbers before running the algorithm
+  if (exports.testnumbers.indexOf(number) !== -1) return true;
+
   number = (''+ number).replace(/\D/g, '');
 
   var i = number.length
